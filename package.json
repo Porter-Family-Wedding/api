@@ -1,0 +1,39 @@
+{
+  "name": "wedding-api",
+  "version": "1.0.0",
+  "description": "API for the porter family wedding",
+  "main": "src/index.js",
+  "scripts": {
+    "watch": "babel-watch ./src/index.js",
+    "build": "babel src -d dist",
+    "seed": "npx sequelize db:seed:all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Porter-Family-Wedding/api.git"
+  },
+  "author": "Kalob Porter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Porter-Family-Wedding/api/issues"
+  },
+  "homepage": "https://github.com/Porter-Family-Wedding/api#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "babel-watch": "^7.0.0",
+    "sequelize-cli": "^6.2.0"
+  },
+  "dependencies": {
+    "auth0": "^2.28.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "restify": "^8.5.1",
+    "restify-cors-middleware": "^1.1.1",
+    "restify-router": "^0.6.1",
+    "sequelize": "^6.3.5"
+  }
+}

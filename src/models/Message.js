@@ -13,6 +13,6 @@ export default class Message extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Person);
+    this.belongsTo(models.Group);
   }
 }

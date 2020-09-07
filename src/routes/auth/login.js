@@ -69,8 +69,8 @@ export default async (req, res) => {
 
     res.send({ token });
   } catch (err) {
-    if (err.response?.status >= 400) {
-      const { data, status } = response;
+    if (err?.response?.status >= 400) {
+      const { data, status } = err.response;
       if (data?.error) {
         return res.send(status, data.error_description);
       }

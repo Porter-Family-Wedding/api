@@ -51,16 +51,18 @@ export default async (req, res) => {
     };
 
     person.groups.forEach((group) => {
-      Object.keys(group.permissions).forEach((permission) => {
-        // Ignore any permissions that isn't specified in our system wide permissions
-        if (permissions[permission]) {
-          permissions[permission] = [...permissions[permission], ...group.permissions[permission]];
-        }
-      })
+      if (group.permissions) {
+        Object.keys(group.permissions).forEach((permission) => {
+          // Ignore any permissions that isn't specified in our system wide permissions
+          if (permissions[permission]) {
+            permissions[permission] = [...permissions[permission], ...group.permissions[permission]];
+          }
+        })
+      }
     });
 
     const payload = {
-      id: person.id,
+      sub: person.id,
       auth0Id: person.auth0Id,
       permissions,
     };

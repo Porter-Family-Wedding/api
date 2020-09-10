@@ -11,8 +11,4 @@ export default class GroupMembership extends Model {
       modelName: 'group_memberships',
     });
   }
-
-  static associate(models) {
-    this.hasMany(models.Person);
-  }
 }

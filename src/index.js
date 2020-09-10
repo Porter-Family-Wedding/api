@@ -2,6 +2,7 @@ import restify, { plugins } from 'restify';
 import corsMiddleware from 'restify-cors-middleware';
 
 import authRoutes from './routes/auth';
+import peopleRoutes from './routes/people';
 
 import db from './config/db';
 
@@ -26,6 +27,7 @@ server.opts('*', (req, res) => {
 });
 
 authRoutes.applyRoutes(server);
+peopleRoutes.applyRoutes(server);
 
 server.listen(port, () => {
   try {

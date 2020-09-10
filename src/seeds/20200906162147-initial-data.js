@@ -51,6 +51,13 @@ module.exports = {
         updated_at: new Date()
       },
       {
+        first_name: 'Kendra',
+        last_name: 'Sipes',
+        attending: true,
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
         first_name: 'Traci',
         last_name: 'Gill',
         attending: true,
@@ -69,7 +76,14 @@ module.exports = {
       {
         person_id: 1,
         group_id: 2,
-        role: 'superadmin',
+        role: 'Super Admin',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        person_id: 1,
+        group_id: 4,
+        role: 'Groom',
         created_at: new Date(),
         updated_at: new Date()
       },
@@ -82,7 +96,27 @@ module.exports = {
       {
         person_id: 2,
         group_id: 2,
-        role: 'superadmin',
+        role: 'Super Admin',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        person_id: 2,
+        group_id: 3,
+        role: 'Bride',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        person_id: 3,
+        group_id: 1,
+        created_at: new Date(),
+        updated_at: new Date()
+      },
+      {
+        person_id: 3,
+        group_id: 2,
+        role: 'Super Admin',
         created_at: new Date(),
         updated_at: new Date()
       },

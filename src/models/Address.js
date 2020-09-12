@@ -18,6 +18,9 @@ export default class Account extends Model {
       zipCode: {
         type: Sequelize.INTEGER,
       },
+      to: {
+        type: Sequelize.STRING,
+      },
     }, {
       sequelize,
       modelName: 'addresses',

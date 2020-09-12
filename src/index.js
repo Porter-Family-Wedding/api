@@ -3,6 +3,7 @@ import corsMiddleware from 'restify-cors-middleware';
 
 import authRoutes from './routes/auth';
 import peopleRoutes from './routes/people';
+import invitesRoutes from './routes/invites';
 
 import db from './config/db';
 
@@ -28,6 +29,7 @@ server.opts('*', (req, res) => {
 
 authRoutes.applyRoutes(server);
 peopleRoutes.applyRoutes(server);
+invitesRoutes.applyRoutes(server);
 
 server.listen(port, () => {
   try {

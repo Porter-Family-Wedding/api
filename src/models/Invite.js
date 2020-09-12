@@ -1,14 +1,16 @@
 import Sequelize, { Model } from 'sequelize';
 
+import codeGenerator from 'src/helpers/codeGenerator';
+import { Address } from 'src/models';
+
 export default class Invite extends Model {
   static init(sequelize) {
-    return super.init({
+    super.init({
       code: {
         type: Sequelize.TEXT,
         unique: true,
-        allowNull: false,
       },
-      accepted: {
+      viewed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
@@ -21,6 +23,16 @@ export default class Invite extends Model {
           fields: ['code'],
         },
       ],
+    });
+
+    this.addHook('beforeCreate', async (model) => {
+      const code = await codeGenerator();
+
+      model.code = code;
+
+      const address = await Address.create();
+
+      model.addressId = address.id;
     });
   }
 

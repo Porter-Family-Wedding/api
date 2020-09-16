@@ -14,6 +14,10 @@ export default class Invite extends Model {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
+      sent: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      }
     }, {
       sequelize,
       modelName: 'invites',

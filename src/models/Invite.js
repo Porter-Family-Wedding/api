@@ -17,7 +17,10 @@ export default class Invite extends Model {
       sent: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
-      }
+      },
+      notes: {
+        type: Sequelize.STRING,
+      },
     }, {
       sequelize,
       modelName: 'invites',
@@ -42,5 +45,7 @@ export default class Invite extends Model {
 
   static associate(models) {
     this.belongsTo(models.Address);
+
+    this.hasMany(models.Person);
   }
 }

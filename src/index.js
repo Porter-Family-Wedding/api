@@ -24,6 +24,7 @@ server.use(plugins.requestLogger());
 server.use(cors.actual);
 
 server.opts('*', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.send(204);
 });
 

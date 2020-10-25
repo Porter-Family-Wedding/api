@@ -4,7 +4,7 @@ import parseQuery from 'src/helpers/parseQuery';
 
 export default async (req, res) => {
   try {
-    const { where, queryOptions } = parseQuery(['code', '$address.to$'], req);
+    const { where, queryOptions } = parseQuery(['$address.to$'], req);
 
     const { count, rows } = await Invite.findAndCountAll({
       where,

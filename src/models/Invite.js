@@ -15,7 +15,13 @@ export default class Invite extends Model {
         defaultValue: false,
       },
       status: {
-        type: Sequelize.ENUM('Accepted', 'Tentatively Accepted', 'Rejected'),
+        type: Sequelize.ENUM('Accepted', 'Rejected'),
+      },
+      assumedSizeOfParty: {
+        type: Sequelize.INTEGER,
+      },
+      sizeOfParty: {
+        type: Sequelize.INTEGER,
       },
       notes: {
         type: Sequelize.STRING,

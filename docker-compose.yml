@@ -14,9 +14,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: npm run watch
+    command:
+      - 'sh'
+      - '-c'
+      - 'yarn install && yarn watch'
     volumes:
       - .:/src/app/
+      - /src/app/node_modules
     environment:
       AUTH0_DOMAIN: wedding-dev.us.auth0.com
       AUTH0_CLIENT_ID: TBJcmSMNSi2hyyFGr7DtNoahDNbRNLHg

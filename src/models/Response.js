@@ -1,6 +1,8 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model, Op } from 'sequelize';
 
-export default class Invite extends Model {
+import { Person } from 'src/models';
+
+export default class Response extends Model {
   static init(sequelize) {
     super.init({
       firstName: {
@@ -18,6 +20,37 @@ export default class Invite extends Model {
     }, {
       sequelize,
       modelName: 'response',
+    });
+
+    this.addHook('afterCreate', async (model) => {
+      const { firstName, lastName, numberAttending, attending } = model;
+      const person = await Person.findOne({
+        where: {
+          firstName: {
+            [Op.iLike]: `%${firstName}%`
+          },
+          lastName: {
+            [Op.iLike]: `%${lastName}%`
+          },
+        }
+      });
+
+      if (person) {
+        const invite = await person.getInvite();
+
+        if (invite) {
+          invite.sizeOfParty = numberAttending;
+          invite.status = attending ? 'Accepted' : 'Rejected';
+          invite.viewed = true;
+          invite.sent = true;
+
+          await invite.save();
+
+          model.inviteId = invite.id;
+
+          await model.save();
+        }
+      }
     });
   }
 

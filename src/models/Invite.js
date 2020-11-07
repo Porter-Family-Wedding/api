@@ -1,6 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
 
-import codeGenerator from 'src/helpers/codeGenerator';
 import { Address } from 'src/models';
 
 export default class Invite extends Model {
@@ -41,6 +40,7 @@ export default class Invite extends Model {
   static associate(models) {
     this.belongsTo(models.Address);
 
+    this.hasMany(models.Response);
     this.hasMany(models.Person);
   }
 }

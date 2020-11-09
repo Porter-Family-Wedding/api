@@ -11,7 +11,7 @@ import db from './config/db';
 
 const server = restify.createServer();
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const cors = corsMiddleware({
   origins: ['*'],

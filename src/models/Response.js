@@ -62,6 +62,10 @@ export default class Response extends Model {
         });
 
         await Person.create({ firstName, lastName, inviteId: invite.id });
+
+        model.inviteId = invite.id;
+
+        await model.save();
       }
     });
   }

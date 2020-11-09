@@ -1,8 +1,10 @@
 import Sequelize, { Model } from 'sequelize';
 
+import { GroupMembership } from 'src/models';
+
 export default class Person extends Model {
   static init(sequelize) {
-    return super.init({
+    super.init({
       auth0Id: {
         type: Sequelize.TEXT,
       },
@@ -26,6 +28,14 @@ export default class Person extends Model {
     }, {
       sequelize,
       modelName: 'people',
+    });
+
+    this.addHook('afterCreate', async (model) => {
+      await GroupMembership.create({
+        personId: model.id,
+        // Add the person to the "everyone" group
+        groupId: 1,
+      });
     });
   }
 

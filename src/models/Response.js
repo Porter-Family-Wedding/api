@@ -1,6 +1,6 @@
 import Sequelize, { Model, Op } from 'sequelize';
 
-import { Person } from 'src/models';
+import { Person, Invite } from 'src/models';
 
 export default class Response extends Model {
   static init(sequelize) {
@@ -27,10 +27,13 @@ export default class Response extends Model {
       const person = await Person.findOne({
         where: {
           firstName: {
-            [Op.iLike]: `%${firstName}%`
+            [Op.iLike]: `${firstName}`
           },
           lastName: {
-            [Op.iLike]: `%${lastName}%`
+            [Op.iLike]: `${lastName}`
+          },
+          inviteId: {
+            [Op.ne]: null,
           },
         }
       });
@@ -50,6 +53,15 @@ export default class Response extends Model {
 
           await model.save();
         }
+      } else {
+        const invite = await Invite.create({
+          sizeOfParty: numberAttending,
+          status: attending ? 'Accepted' : 'Rejected',
+          viewed: true,
+          sent: true,
+        });
+
+        await Person.create({ firstName, lastName, inviteId: invite.id });
       }
     });
   }

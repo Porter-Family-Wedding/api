@@ -1,6 +1,6 @@
 import Sequelize, { Model, Op } from 'sequelize';
 
-import { Person, Invite } from 'src/models';
+import { Person, Invite, Address } from 'src/models';
 
 export default class Response extends Model {
   static init(sequelize) {
@@ -60,6 +60,8 @@ export default class Response extends Model {
           viewed: true,
           sent: true,
         });
+
+        await Address.update({ to: `${firstName} ${lastName}` }, { where: { id: invite.addressId } });
 
         await Person.create({ firstName, lastName, inviteId: invite.id });
 
